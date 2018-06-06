@@ -1,0 +1,22 @@
+# WarmUp Result
+
+#- name: Wait untils Web healthcheck is available in {{ip}}
+#  shell: curl --head --silent http://{{ip}}/test/healthcheck
+#  #shell: curl --head --silent http://{{ip}}/test/healthcheck
+#  register: result
+#  until: result.stdout.find("200 OK") != -1
+#  retries: 12
+#  delay: 30
+##  with_items:
+#
+#
+#- name: Wait untils API healthcheck is available in {{ip}}
+#  shell: curl  http://{{ip}}
+#  register: result
+#  until: result.stdout.find("true") != -1
+#  retries: 12
+#  delay: 30
+
+- name: Warmup {{warmup_url}}
+  win_warmup-result:
+    url: "{{ warmup_url }}"

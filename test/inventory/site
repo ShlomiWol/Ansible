@@ -1,0 +1,21 @@
+#[elb_group_a]
+#1.1.1.1 instance_id='i-instance' ip='1.1.1.1'
+
+#[elb_group_b]
+#1.1.1.1 instance_id='i-2instance' ip='1.1.1.1'
+
+#[public-web:children]
+#elb_group_a
+#elb_group_b
+
+#[elb_group_a_secured]
+#1.1.1.1 instance_id='i-instance' ip='1.1.1.1'
+
+[windows]
+11.1.1.1
+
+#[secured-web:children]
+#elb_group_a_
+
+[local]
+localhost ansible_connection=local

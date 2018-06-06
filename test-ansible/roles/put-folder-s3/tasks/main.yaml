@@ -1,0 +1,7 @@
+---
+- name: Simple PUT operation
+  s3:
+    bucket: scripts
+    object: /TEST
+    src: /tmp/test-ansible
+    mode: put

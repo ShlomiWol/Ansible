@@ -1,0 +1,46 @@
+# ------------------------------------------------------------------------------------
+# ----------- Pre upgrade steps (backup, download from s3) -------------------------
+# ------------------------------------------------------------------------------------
+
+- hosts: local
+  roles:
+     - declaring_variables
+
+#- hosts: local
+#  tasks:
+#  - debug:
+#        msg: "{{ test }}"
+
+#- hosts: local
+#  tasks:
+#    - name:
+#      debug:
+#          msg: "{{ test.name }}"
+
+#- hosts: local
+#  tasks:
+#    - name: Declaring variables
+#      set_fact:
+#        api_url: "http://k"
+#        web_url: "http://qa"
+#        secure_url: "https://se"
+#      when: deploy_environment == "QA"
+#
+#- hosts: local
+#  tasks:
+#    - name: Declaring variables
+#      set_fact:
+#        api_url: "http://k"
+#        web_url: "http://wcheck"
+#        secure_url: "http://e.com/"
+#      when: deploy_environment == "QA-STAGING"
+
+- hosts: local
+  tasks:
+  - debug:
+        msg: "{{ web_url }}"
+
+- hosts: local
+  tasks:
+    - name: Wait for akamai to clear
+# ---------------------------------------------- Finished the Deploy ------------------------------------

@@ -1,0 +1,41 @@
+---
+#- name: "{{status}} {{service_name}}"
+#  win_service:
+#     name: "{{service_name}}"
+#     #GlobalEServices-Test
+#     state: "{{status}}"
+
+#- name: Geeting iis hostname
+#  win_iis_website:
+#      name: "API"
+#  register: test
+#
+#- name: Geeting iis hostname
+#  win_iis_webbinding:
+#    name: "API"
+#  register: bind
+
+# If its QA Deploy
+
+- name: Declaring variables
+  set_fact:
+    api_url: ""
+    web_url: ""
+    secure_url: ""
+  when: deploy_environment == "QA"
+
+# If its QA-Staging Deploy
+
+- name: Declaring variables
+  set_fact:
+    api_url: "http://c"
+    web_url: "http://w"
+    secure_url: "http://"
+  when: deploy_environment == "QA-STAGING"
+
+#- name: Getinger.
+#  ec2_remote_facts:
+#    region: "eu-west-1"
+#    filters:
+#      "tag:Deploy": "{{deploy_environment}}-M"
+#  register: server

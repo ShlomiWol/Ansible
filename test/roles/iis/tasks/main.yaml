@@ -1,0 +1,16 @@
+---
+#- name: "{{status}} {{service_name}}"
+#  win_service:
+#     name: "{{service_name}}"
+#     #G-Test
+#     state: "{{status}}"
+
+- name: Geeting iis hostname
+  win_iis_website:
+      name: "API"
+  register: test
+
+- name: Geeting iis hostname
+  win_iis_webbinding:
+    name: "API"
+  register: bind

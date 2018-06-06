@@ -1,0 +1,5 @@
+---
+- name: Geeting iis hostname
+  win_iis_website:
+      name: "{{ url }}"
+  register: test-api

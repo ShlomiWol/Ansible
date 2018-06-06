@@ -1,0 +1,81 @@
+# WarmUp
+#- name: download warmup
+#  get_url: url=http://172.20.2.126/test/healthcheck dest=/globale-scripts/devops/ansible/roles/warmup/healthcheck
+
+# Recycle IIS
+- name: Warmup {{warmup_url}}
+  win_warmup-without-result:
+    url: "{{ warmup_url }}"
+#- name: Download healthcheck to ''
+#  win_get_url:
+#    url: 'http://localhost/test/healthcheck'
+#    dest: 'C:\\Users\\\\healthcheck'
+
+#- name: download test warmup
+#  get_url: url=http://{{ip}}/test/healthcheck dest=/ck timeout=300
+
+#- shell: wget http://"{{ ip }}"/eck
+
+# Check that you can connect (GET) to a page and it returns a status 200
+#- uri: url=http://"{{ip}}"/test/ck timeout=300
+
+# Check that a page returns a status 200 and fail if the word AWESOME is not
+# in the page contents.
+
+# Web
+############# Workssssssssssss ##############
+- command: "curl http://{{ip}}/test/h"
+#- uri: url=http://{{ip}}/test/healthcheck return_content=yes timeout=300
+  async: 10
+  poll: 0
+  register: webpage1
+
+  ############# Workssssssssssss ##############
+
+
+
+    ############# Workssssssssssss ##############
+
+#- name: 'Helth Check web check on fire and forget task'
+#  async_status: jid={{ webpage1.ansible_job_id }}
+#  register: job_result1
+#  until: job_result1.finished
+#  retries: 100
+#  delay: 30
+#
+#- name: 'Helth Check web check on fire and forget task'
+#  async_status: jid={{ webpage2.ansible_job_id }}
+#  register: job_result2
+#  until: job_result2.finished
+#  retries: 100
+#  delay: 30
+
+#- debug:
+#     msg: "{{job_result1.content}}"
+
+#- debug:
+#     msg: "{{job_result2.content}}"
+
+#- name: Wait untils healthcheck web  is available
+#  shell: curl --head --silent http://{{ip}}/test/h
+#  #shell: curl --head --silent http://{{ip}}/test/h
+#  until: result.stdout.find("200 OK") != -1
+#  retries: 12
+#  delay: 30
+#  with_items:
+
+
+- name: Wait untils healthcheck API is available
+  shell: curl  http://{{ip}}:1/t/LB
+  register: result
+  until: result.stdout.find("true") != -1
+  retries: 12
+  delay: 30
+
+#- fail: msg="Web health check doesnt work"
+#  when: "'true' not in job_result1.content"
+#
+#- fail: msg="API health check doesnt work"
+#  when: "'true' not in job_result2.content"
+#- name: download test warmup
+#  get_url: url=http://{{ip}}/te/L dest=/gi timeout=300
